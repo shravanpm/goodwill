@@ -1,28 +1,66 @@
 const express = require("express");
 const router = express.Router();
-// const Product = require("../models/product.model")
-const ShopCustomer = require("../models/shopCustomer.model");
+const Shop = require("../models/shop.model");
 const authenticate = require("../middleware/authenticate");
 
 // create a new customer for the shop
 router.post("", authenticate, async (req, res) => {
   try {
-    const customer = await ShopCustomer.create(req.body);
+    const customer = await Shop.create(req.body);
     return res.status(201).send(customer);
   } catch (err) {
     return res.status(400).send({ message: err.message });
   }
 });
 
-// get every customers of a shop
-router.get("", authenticate, async (req, res) => {
+// get shop by searching using number by query param
+
+router.get("/search/", authenticate, async (req, res) => {
+  const params = req.query;
+  console.log(params);
+  return res.status(200).send({ message: params });
+});
+
+// get every customers of a shop or search by name
+router.get("/", authenticate, async (req, res) => {
+  const params = req.query;
+
   try {
-    const customers = await ShopCustomer.find({
+    const customers = await Shop.find({
       shopId: req.body.shopId,
     })
       .lean()
       .exec();
-    return res.status(200).send(customers);
+    // search by name
+    if (params.name) {
+      // console.log("params", params);
+      // console.log(customers);
+      let result = [];
+      customers.forEach((el) => {
+        let temp = el.name.slice(0, params.name.length).toLowerCase();
+        if (temp == params.name.toLowerCase()) {
+          result.push(el);
+        }
+      });
+      return res.status(200).send(result);
+    }
+    // search by number
+    else if (params.nbr) {
+      let result = [];
+      customers.forEach((el) => {
+        let temp = el.mobile;
+        if (temp.toString() == params.nbr) {
+          result.push(el);
+        }
+      });
+      console.log("result", result);
+      if (res.length == 0) {
+        return res.status(204).send({ result });
+      }
+      return res.status(200).send({ result });
+    } else {
+      return res.status(200).send(customers);
+    }
   } catch (err) {
     return res.status(400).send({ message: err.message });
   }

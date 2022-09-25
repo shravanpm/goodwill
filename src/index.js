@@ -1,7 +1,7 @@
 const express = require("express");
 const userController = require("./controllers/user.controller");
-
 const shopController = require("./controllers/shop.controller");
+const shopCustomerController = require("./controllers/shopCustomer.controller");
 const cors = require("cors");
 const { register, login } = require("./controllers/auth.controller");
 
@@ -15,5 +15,6 @@ app.use("/api/user", userController);
 app.post("/api/register", register);
 app.post("/api/login", login);
 app.use("/api/shop", shopController);
+app.use("/api/shopcustomer", shopCustomerController);
 
 module.exports = app;

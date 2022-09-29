@@ -35,7 +35,7 @@ const login = async (req, res) => {
       return res.status(400).send("Wrong Email or Password");
     }
 
-    //if email exists, check password;
+    // if email exists, check password;
 
     const match = user.checkPassword(req.body.password);
     if (!match) {
@@ -46,7 +46,7 @@ const login = async (req, res) => {
     const token = generateToken(user);
     return res.status(200).send({ user, token });
   } catch (err) {
-    res.status(400).send({ messge: err.messge });
+    res.status(400).send({ message: err.message });
   }
 };
 

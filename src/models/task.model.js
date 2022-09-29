@@ -3,80 +3,80 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema(
   {
     churidhar: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 400 },
     },
 
     blouse: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 300 },
     },
     blouse_with_lining: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 350 },
     },
     churidhar_with_lining: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 450 },
     },
     top_only: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 300 },
     },
     lining_top: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 350 },
     },
     pant: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 200 },
     },
     skin_and_top: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 650 },
     },
     skirt: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 250 },
     },
     lining_skirt: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 300 },
     },
     full_gown: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 700 },
     },
     flair_top: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 450 },
     },
     saree_fall: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 100 },
     },
     saree_chend: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 80 },
     },
     interlocking: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 50 },
     },
     nity: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 200 },
     },
     kids_frock: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 300 },
     },
     kids_skirt_top: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 450 },
     },
     kids_gown: {
-      qty: { type: Number, required: false },
+      qty: { type: Number, required: false, default: 0 },
       price: { type: Number, required: false, default: 450 },
     },
 

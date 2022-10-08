@@ -28,4 +28,18 @@ router.get("/:id", authenticate, async (req, res) => {
   }
 });
 
+// update a customer measurement
+router.patch("/:id", authenticate, async (req, res) => {
+  try {
+    const measurement = await ShopCustomer.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    return res.status(200).send({ measurement });
+  } catch (error) {
+    return res.status(400).send({ message: error.message });
+  }
+});
+
 module.exports = router;

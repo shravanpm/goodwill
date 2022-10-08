@@ -84,4 +84,17 @@ router.post("/", authenticate, async (req, res) => {
   }
 });
 
+// update a task
+router.post("/:id", authenticate, async (req, res) => {
+  try {
+    // console.log("req", req.body);
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    return res.status(200).send({ message: "success", data: task });
+  } catch (error) {
+    return res.status(400).send({ message: error.message });
+  }
+});
+
 module.exports = router;

@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Button, Heading, Input, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  Input,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -18,9 +25,11 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { NewCustomer } from "../Components/Customer/NewCustomer";
+import { useNavigate } from "react-router-dom";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const data = useSelector((state) => state.appReducer.customers);
   //token
   const token = useSelector((state) => state.authReducer.token);
@@ -39,6 +48,14 @@ export const HomePage = () => {
     });
   };
 
+  //customers from redux
+  const customers = useSelector((state) => state.appReducer.customers);
+
+  //selecting a customer after searching
+  const handleCustomerClick = (customer) => {
+    navigate(`/customer/${customer._id}`);
+  };
+
   const handleSubmit = () => {
     // console.log(customer);
     if (!customer.name && customer.password) {
@@ -50,7 +67,7 @@ export const HomePage = () => {
     };
 
     dispatch(createCustomerProfile(payload));
-    // onClose();
+    onClose();
   };
 
   const [mobile, setMobile] = useState("");
@@ -84,6 +101,19 @@ export const HomePage = () => {
         <Button colorScheme={"teal"} onClick={handleSearch}>
           Search
         </Button>
+        <Box>
+          {customers.length !== 0 && (
+            <Box>
+              {customers.map((item) => (
+                <Box key={item._id}>
+                  <Text onClick={() => handleCustomerClick(item)}>
+                    {item.name}
+                  </Text>
+                </Box>
+              ))}
+            </Box>
+          )}
+        </Box>
       </Box>
       <Box>
         <>

@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { Customer } from "../Pages/Customer";
 import { HomePage } from "../Pages/HomePage";
 import { Login } from "../Pages/Login";
 import { SignUp } from "../Pages/SignUp";
@@ -22,6 +23,14 @@ const AllRoutes = () => {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/customer/:id"
+          element={
+            <PrivateRoute>
+              <Customer />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Box>
   );

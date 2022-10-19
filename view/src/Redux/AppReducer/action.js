@@ -15,9 +15,9 @@ export const getCustomers = (payload) => (dispatch) => {
     .then((r) => {
       dispatch({
         type: types.GET_CUSTOMERS_SUCCESS,
-        payload: r.data,
+        payload: r.data.result,
       });
-      // console.log("customers", r.data);
+      console.log("customers", r.data);
     })
     .catch((e) => {
       dispatch({ type: types.GET_CUSTOMERS_FAILURE });

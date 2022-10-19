@@ -9,11 +9,15 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginRequest } from "../Redux/AuthReducer/action";
 
 export const Login = () => {
   const [shop, setShop] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  //token
+  const token = useSelector((state) => state.authReducer.token);
 
   //Taking the input
   const handleChange = (e) => {
@@ -24,16 +28,22 @@ export const Login = () => {
     });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    dispatch(loginRequest(shop));
+  };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   return (
     <Box>
       <Container>
         <FormControl>
           <FormLabel>Name</FormLabel>
-          <Input type="name" id="name" onChange={handleChange} />
+          <Input id="mobile" onChange={handleChange} />
           <FormLabel>Password</FormLabel>
           <Input type="password" id="password" onChange={handleChange} />
         </FormControl>

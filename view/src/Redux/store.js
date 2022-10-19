@@ -10,7 +10,7 @@ import { reducer as appReducer } from "./AppReducer/reducer";
 
 const rootReducer = combineReducers({
   authReducer,
-  appReducer: appReducer,
+  appReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

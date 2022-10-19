@@ -1,23 +1,38 @@
+import { loadData } from "../../util";
 import * as types from "./actionTypes";
 
-const loadData = (key) => {
-  try {
-    let data = JSON.parse(localStorage.getItem(key));
-    return data;
-  } catch (error) {
-    return "";
-  }
+const initialState = {
+  customers: [],
+  tasks: [],
+  isLoading: false,
+  isError: false,
 };
-
-const saveData = (key, data = "") => {
-  localStorage.setItem(key, JSON.stringify(data));
-};
-
-const initialState = loadData("") || {};
 
 export const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case types.GET_CUSTOMERS_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    }
+    case types.GET_CUSTOMERS_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        customers: payload,
+      };
+    }
+    case types.GET_CUSTOMERS_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    }
     default:
       return state;
   }
